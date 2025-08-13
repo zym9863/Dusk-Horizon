@@ -11,7 +11,6 @@ interface Thought {
 export default function EndlessRoad() {
   const [thoughts, setThoughts] = createSignal<Thought[]>([])
   const [inputValue, setInputValue] = createSignal('')
-  const [isWriting, setIsWriting] = createSignal(false)
 
   // 模拟其他用户的思绪流
   const sampleThoughts = [
@@ -56,7 +55,6 @@ export default function EndlessRoad() {
 
     setThoughts(prev => [...prev, newThought])
     setInputValue('')
-    setIsWriting(false)
 
     // 模拟思绪"驶过"的感觉
     setTimeout(() => {
@@ -90,7 +88,6 @@ export default function EndlessRoad() {
             <textarea
               value={inputValue()}
               onInput={(e) => setInputValue(e.target.value)}
-              onFocus={() => setIsWriting(true)}
               placeholder="在这无尽的公路上，写下此刻的心境..."
               class="thought-input"
               rows="3"
