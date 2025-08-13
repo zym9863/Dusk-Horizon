@@ -1,34 +1,35 @@
 import { createSignal } from 'solid-js'
-import solidLogo from './assets/solid.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import EndlessRoad from './components/EndlessRoad'
+import MemoryTimeCapsule from './components/MemoryTimeCapsule'
 
 function App() {
-  const [count, setCount] = createSignal(0)
+  const [currentView, setCurrentView] = createSignal<'road' | 'capsule'>('road')
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
-      </div>
-      <h1>Vite + Solid</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
-    </>
+    <div class="app">
+      <header class="app-header">
+        <h1 class="app-title">黄昏地平线</h1>
+        <nav class="app-nav">
+          <button 
+            class={currentView() === 'road' ? 'nav-btn active' : 'nav-btn'}
+            onClick={() => setCurrentView('road')}
+          >
+            无尽公路
+          </button>
+          <button 
+            class={currentView() === 'capsule' ? 'nav-btn active' : 'nav-btn'}
+            onClick={() => setCurrentView('capsule')}
+          >
+            往事封存
+          </button>
+        </nav>
+      </header>
+      
+      <main class="app-main">
+        {currentView() === 'road' ? <EndlessRoad /> : <MemoryTimeCapsule />}
+      </main>
+    </div>
   )
 }
 

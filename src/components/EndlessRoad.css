@@ -1,0 +1,168 @@
+.endless-road {
+  position: relative;
+  min-height: 70vh;
+  overflow: hidden;
+}
+
+.road-container {
+  position: relative;
+  height: 60vh;
+  background: linear-gradient(to bottom, 
+    rgba(255, 123, 84, 0.3) 0%,
+    rgba(255, 107, 53, 0.2) 30%,
+    rgba(44, 24, 16, 0.8) 100%
+  );
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.horizon-line {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.6) 50%, 
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.thoughts-stream {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.thought-bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 0.8rem 1.2rem;
+  color: #fff;
+  font-size: 0.9rem;
+  max-width: 300px;
+  word-wrap: break-word;
+  animation: driveBy 10s linear infinite;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes driveBy {
+  0% {
+    transform: translateX(100vw) translateY(60vh) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50vw) translateY(40vh) scale(0.8);
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(-100px) translateY(30vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.input-section {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+}
+
+.input-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.thought-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.thought-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.submit-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(45deg, #ff7b54, #ff6b35);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.road-info {
+  text-align: center;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.road-info p {
+  margin: 0.5rem 0;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .thought-bubble {
+    max-width: 250px;
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .input-section {
+    width: 95%;
+  }
+  
+  .input-container {
+    padding: 1rem;
+  }
+}
